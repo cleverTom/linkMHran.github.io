@@ -13,7 +13,10 @@ $(function(){
             oBtn.click(function(){
                 /*var oHeight=oBgImg.outerHeight();
                 $(window).scrollTop(oHeight);*/
-                oMain.animate({top:0},500);
+                oMain.animate({top:0},500,function(){
+                    oInfo.hide();
+                });
+                oMain.height($(window).outerHeight());
             });
         }
     )();

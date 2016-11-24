@@ -75,6 +75,12 @@ input {
   display: block;
   clear: both;
 }
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 header #bgImg {
   width: 100%;
   height: 100%;
@@ -141,6 +147,67 @@ header .info a:hover {
 #main {
   position: absolute;
   width: 100%;
-  height: 1200px;
-  background: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+#main #ul1 {
+  width: 960px;
+  margin: 20px auto;
+}
+#main #ul1 li {
+  position: relative;
+  width: 916px;
+  height: 150px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #000;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: #1a2013;
+  background: -webkit-linear-gradient(top, #1a2013, #3a3535);
+  background: -moz-linear-gradient(top, #1a2013, #3a3535);
+  background: linear-gradient(top, #1a2013, #3a3535);
+}
+#main #ul1 li .title {
+  float: left;
+  width: 600px;
+  height: 150px;
+  padding-left: 50px;
+}
+#main #ul1 li .title h2 {
+  height: 30px;
+  line-height: 30px;
+}
+#main #ul1 li .title h2 a {
+  color: #ffffff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#main #ul1 li .title p {
+  margin-top: 10px;
+  height: 110px;
+  width: 100%;
+  overflow: hidden;
+  font-size: 16px;
+  color: #ffffff;
+}
+#main #ul1 li img {
+  float: left;
+  width: 200px;
+  height: 150px;
+}
+#main #ul1 li .check {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  background: #ff4923;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #fff;
 }
