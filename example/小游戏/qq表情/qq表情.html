@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>qq表情游戏</title>
+    <style>
+ body,ul,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0}.wrap{width:850px;height:550px;margin:50px auto;background:#eff7ef;text-align:center}h2{padding-top:20px}.des{margin:20px 0 20px 0;font-size:12px}#gameWrap{position:relative;top:0;height:385px;width:850px}#score{position:absolute;top:15px;left:27px;width:116px;height:50px;padding-top:12px;background:#efefc6;border:1px solid #388487}#game1{position:absolute;top:15px;left:144px;width:621px;height:349px;background:#fff;border:1px solid #388487;overflow:hidden}#game1 img{position:absolute;top:-25px;left:200px;}
+    </style>
+    <script src="mu.js"></script>
+    <script>
+        window.onload=function(){
+            var oBtn=document.getElementById("btn1"),
+            oGame=document.getElementById("gameWrap"),
+            oScore=document.getElementById("score"),
+            oGame1=document.getElementById("game1"),
+            aP=oScore.getElementsByTagName("p"),
+            oImg=oGame1.getElementsByTagName("img")[0],
+            speed1= 3,score1= 0,score2=0;
+            oBtn.onclick=function(){
+                oBtn.value="游戏进行中...";
+                oBtn.disabled=true;
+                fntab();
+                function fntab(){
+                    var imgNum=Math.round(Math.random()*10+1);
+                    var imgPosi=Math.round(Math.random()*560+20);
+                    oImg.style.left=imgPosi+"px";
+                    oImg.src="image/"+imgNum+".png";
+                    doMove(oImg,"top",speed1,350,30,function(){
+                        oImg.style.top="-25px";
+                        score2++;
+                        aP[1].innerHTML="失分:"+score2+"分";
+                        Shake(oGame,"top",function(){
+                            fntab();
+                        });
+                    });
+                    if(score2==5){
+                        alert("游戏失败，请重新开始");
+                        clearInterval(oImg.timer);
+                        speed1=3;
+                        score1= 0;
+                        score2=0;
+                        oBtn.value="开始游戏";
+                        oBtn.disabled=false;
+                        aP[1].innerHTML="失分:0分";
+                        aP[0].innerHTML="得分:0分";
+                    }
+                    oImg.onmouseover=function(){
+                        clearInterval(oImg.timer);
+                        oImg.src="image/qq.png";
+                        Shake(oImg,"left",function(){
+                            oImg.style.top="-25px";
+                            score1++;
+                            aP[0].innerHTML="得分:"+score1+"分";
+                            fntab();
+                        });
+                    };
+                    speed1++;
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <h2>你的鼠标有多快?</h2>
+    <p class="des">游戏说明：点击"开始游戏",随机掉下QQ表情，点中它，千万别让他掉下去！！</p>
+    <input type="button" value="开始游戏" id="btn1">
+    <div id="gameWrap">
+        <div id="score">
+            <p>得分:0分</p>
+            <p>失分:0分</p>
+        </div>
+        <div id="game1">
+            <img src="image/1.png" alt="">
+        </div>
+    </div>
+</div>
+</body>
+</html>

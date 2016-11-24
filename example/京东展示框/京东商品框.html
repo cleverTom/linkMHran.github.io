@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>京东展示框</title>
+    <style>
+        *{margin:0;padding:0;}
+        li{list-style:none;}
+        a{text-decoration: none;}
+        img{border:none;}
+        .div3{
+            position: absolute;
+            left:200px;
+            top:50px;
+            width:354px;
+            height:420px;
+        }
+        #div1{
+            position:relative;
+            width:350px;
+            height:350px;
+            border:2px solid #c8c8c8;
+            overflow: hidden;
+        }
+        #div1 span{
+            display: none;
+            position: absolute;
+            left:0;
+            top:0;
+            width:100px;
+            height:100px;
+            background: yellow;
+            opacity:0.5;
+            filter:alpha(opacity=50);
+
+        }
+        #div2{
+            position: relative;
+            height:66px;
+        }
+        #div3{
+            position: absolute;
+            left:32px;
+            width:300px;
+            height: 60px;
+            bottom: 0;
+            overflow: hidden;
+        }
+        #div3 ul{
+            position: absolute;
+            left:0;
+            top:0;
+            width:435px;
+        }
+        #div3 ul li{
+            float: left;
+            border:2px solid #c8c8c8;
+            margin-right:6px;
+            cursor: pointer;
+        }
+        #div3 ul li.active{border:2px solid red}
+        #next,#prev{
+            display: block;
+            position: absolute;
+            width:12px;
+            height:53px;
+            border:2px solid #c8c8c8;
+            border-radius: 5px;
+        }
+        #next{
+            right: -2px;
+            top: 6px;
+        }
+        #prev{
+            left:-1px;
+            top:6px;
+        }
+        #next img,#prev img{
+            position: absolute;
+            left:3px;
+            top:22px;
+        }
+        #div4{
+            display: none;
+            position: absolute;
+            left:600px;
+            top:50px;
+            width:400px;
+            height:400px;
+            border:2px solid #c8c8c8;
+            overflow: hidden;
+            opacity:0;
+            filter:alpha(opacity=0);
+        }
+        #div4 img{
+            position: absolute;
+            left:0;
+            top:0;
+            width:700px;
+            height:700px;
+        }
+        #mark{
+            position: absolute;
+            left:0;
+            top:0;
+            width:350px;
+            height:350px;
+            background: red;
+            opacity:0;
+            filter:alpha(opacity=0);
+            cursor: pointer;
+        }
+    </style>
+    <script src="move.js"></script>
+    <script>
+        window.onload=function(){
+            (function(){
+                var oDiv1=document.querySelector("#div1"),
+                        oWarp=document.querySelector(".div3"),
+                        oImg1=oDiv1.querySelector("img"),
+                        arr=[
+                            "img/big1.jpg",
+                            "img/big2.jpg",
+                            "img/big3.jpg",
+                            "img/big4.jpg",
+                            "img/big5.jpg",
+                            "img/big1.jpg",
+                            "img/big2.jpg"
+                        ],
+                        oSpan=oDiv1.querySelector("span"),
+                        oDiv4=document.querySelector("#div4"),
+                        oImg=oDiv4.querySelector("img"),
+                        oDiv3=document.querySelector("#div3"),
+                        oUl=oDiv3.querySelector("ul"),
+                        aLi=document.querySelectorAll("li"),
+                        oNext=document.querySelector("#next"),
+                        oPrev=document.querySelector("#prev"),
+                        count=0;
+//            默认样式
+                oPrev.style.border="2px solid #EBEBEB";
+                oDiv1.onmouseover=function(){
+                    oSpan.style.display="block";
+                    oDiv4.style.display="block";
+                    startMove(oDiv4,{opacity:100});
+                };
+                oDiv1.onmouseout=function(){
+                    oSpan.style.display="none";
+                    startMove(oDiv4,{opacity:0},function(){
+                        oDiv4.style.display="none";
+                    });
+                };
+                oDiv1.onmousemove=function(ev){
+                    var ev=ev||event;
+                    var iLeft=ev.clientX-oWarp.offsetLeft-oSpan.offsetWidth/2;
+                    var iTop=ev.clientY-oWarp.offsetTop-oSpan.offsetHeight/2;
+                    if(iLeft<=0){
+                        iLeft=0;
+                    }else if(iLeft>=oDiv1.offsetWidth-oSpan.offsetWidth){
+                        iLeft=oDiv1.offsetWidth-oSpan.offsetWidth;
+                    }
+                    if(iTop<=0){
+                        iTop=0;
+                    }else if(iTop>=oDiv1.offsetHeight-oSpan.offsetHeight){
+                        iTop=oDiv1.offsetHeight-oSpan.offsetHeight;
+                    }
+                    var scaleX=iLeft/(oDiv1.offsetWidth-oSpan.offsetWidth);
+                    var scaleY=iTop/(oDiv1.offsetHeight-oSpan.offsetHeight);
+                    oSpan.style.left=iLeft+"px";
+                    oSpan.style.top=iTop+"px";
+                    oImg.style.left=-scaleX*(oImg.offsetWidth-oDiv4.offsetWidth)+"px";
+                    oImg.style.top=-scaleY*(oImg.offsetHeight-oDiv4.offsetHeight)+"px";
+                };
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].index=i;
+                    aLi[i].onmouseover=function(){
+                        for(var i=0;i<aLi.length;i++){aLi[i].className="";}
+                        this.className="active";
+                        oImg.src=oImg1.src=arr[this.index];
+                    }
+                }
+                oNext.onclick=function(){
+                    if(oNext.onOff) return false;
+                    oNext.onOff=true;
+                    if(count<aLi.length-5){
+                        count++;
+                        startMove(oUl,{left:oUl.offsetLeft-aLi[0].offsetWidth-6},function(){
+                            oNext.onOff=false;
+                            oPrev.onOff=false;
+                        });
+                        if(count==aLi.length-5){
+                            oNext.style.border="2px solid #EBEBEB";
+                        }else{
+                            oNext.style.border="2px solid #c8c8c8";
+                        }
+                        if(count==0){
+                            oPrev.style.border="2px solid #EBEBEB";
+                        }else{
+                            oPrev.style.border="2px solid #c8c8c8";
+                        }
+
+                    }
+                    console.log(count);
+                };
+                oPrev.onclick=function(){
+                    if(oPrev.onOff) return false;
+                    oPrev.onOff=true;
+                    if(count>0){
+                        count--;
+                        startMove(oUl,{left:oUl.offsetLeft+aLi[0].offsetWidth+6},function(){
+                            oNext.onOff=false;
+                            oPrev.onOff=false;
+                        });
+                        if(count==0){
+                            oPrev.style.border="2px solid #EBEBEB";
+                        }else{
+                            oPrev.style.border="2px solid #c8c8c8";
+                        }
+                        if(count==aLi.length-5){
+                            oNext.style.border="2px solid #EBEBEB";
+                        }else{
+                            oNext.style.border="2px solid #c8c8c8";
+                        }
+                    }
+                };
+                oDiv4.onmousedown=function(){
+                    return false;
+                };
+            })();
+        }
+    </script>
+</head>
+<body>
+<div class="div3">
+    <div id="div1">
+        <img src="img/big1.jpg" alt="">
+        <span></span>
+        <div id="mark"></div>
+    </div>
+    <div id="div2">
+       <div id="div3">
+           <ul>
+               <li class="active"><img src="img/small1.jpg" alt=""></li>
+               <li><img src="img/small2.jpg" alt=""></li>
+               <li><img src="img/small3.jpg" alt=""></li>
+               <li><img src="img/small4.jpg" alt=""></li>
+               <li><img src="img/small5.jpg" alt=""></li>
+               <li><img src="img/small1.jpg" alt=""></li>
+               <li><img src="img/small2.jpg" alt=""></li>
+           </ul>
+       </div>
+        <a href="javascript:;" id="prev">
+            <img src="img/triLeft.png" alt="">
+        </a>
+        <a href="javascript:;" id="next">
+            <img src="img/triRight.png" alt="">
+        </a>
+    </div>
+</div>
+<div id="div4"><img src="img/big1.jpg" alt=""></div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+    /*<!--默认样式重置-->*/
+body,dl,dt,dd,ul,ol,h1,h2,h3,h4,h5,h6,pre,form,input,dl,dt,textarea,th,td,select,p,em,strong
+{padding:0;margin:0}em,strong{font-style:normal}table{border-collapse:collapse}textarea{resize:none;overflow:auto}li{list-style:none}a{text-decoration:none}img{border:0;vertical-align:top}.clear::after{content:"";display:block;clear:both}body{font-size: 12px;font-family:"微软雅黑";}input{outline:none;}
+/*basic-dialog*/
+#dialog{
+    display: none;
+    position: absolute;
+    top:100px;
+    left:300px;
+    width:300px;
+    height:250px;
+    background: #ffffff;
+    border:1px solid #c8c8c8;
+    z-index: 3;
+    overflow: hidden;
+}
+#dialog p{
+    padding:15px;
+    font-size: 18px;
+}
+h4{
+    position: relative;
+    text-align: center;
+    line-height: 30px;
+    background: #c8c8c8;
+    font-size:18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor:pointer;
+}
+h4 input{
+    position: absolute;
+    right:5px;
+    top:5px;
+    width:25px;
+    height: 23px;
+    border:2px solid #9c9c9c;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 900;
+    color: #9c9c9c;
+}
+#mark{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    background: #000;
+    opacity:0.5;
+    filter:alpha(opacity=50);
+    z-index:2;
+}
+#waitClose{
+    position: absolute;
+    top:30px;
+    right:0;
+    background: #000;
+    color: #ffffff;
+    font-size: 12px;
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <script>
+        document.documentElement.style.fontSize=window.screen.width/10+"px";
+    </script>
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 1rem;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        .wrap{
+            position: relative;
+            width:10rem;
+            height:4rem;
+            perspective: 800px;
+        }
+        #box{
+            width:100%;
+            height:100%;
+            transform-style: preserve-3d;
+            transform-origin:center center -5rem;
+
+        }
+        #box div{
+            position: absolute;
+            width:10rem;
+            height:4rem;
+            text-align: center;
+            font-size: 1.5rem;
+            line-height: 4rem;
+            color: #000;
+
+            /*box-shadow: 2px 10px 15px #a9a9a9;*/
+        }
+        #box div:nth-of-type(1){
+            /*正面*/
+            background: #03a5a2;
+        }
+        #box div:nth-of-type(2){
+            /*左面*/
+            background: #d56d96;
+            transform-origin:left center;
+            transform:rotateY(-90deg) translateX(-10rem);
+        }
+        #box div:nth-of-type(3){
+            /*右面*/
+            background: #192e99;
+            transform-origin:right center;
+            transform:rotateY(90deg) translateX(10rem);
+        }
+        #box div:nth-of-type(4){
+            /*上面*/
+            width: 10rem;
+            height: 10rem;
+            line-height: 8rem;
+            background: #00ee42;
+            transform-origin: top;
+            transform:rotateX(90deg) translateY(-10rem);
+        }
+        #box div:nth-of-type(5){
+            /*下面*/
+            width: 10rem;
+            height: 10rem;
+            background: #ffab0f;
+            line-height: 8rem;
+            transform-origin: bottom;
+            transform:rotateX(90deg) translateZ(6rem);
+        }
+        #box div:nth-of-type(6){
+            /*后面*/
+            background: #c2c2c2;
+            transform:translateZ(-10rem) rotateY(180deg);
+        }
+        #box div img{
+            width:10rem;
+            height:4rem;
+        }
+        #index{
+            position: absolute;
+            top:4rem;
+            width:2.4rem;
+            left:calc(50% - 1.1rem);
+        }
+        #index a{
+            float: left;
+            width:0.4rem;
+            height:0.4rem;
+            background: #979797;
+            margin-right:0.2rem;
+            border-radius:0.2rem;
+        }
+        #index a.active{
+            background: #03d1ce;
+        }
+    </style>
+</head>
+<script>
+    window.onload=function(){
+        var oBox=document.querySelector("#box");
+        var oNowX=0;
+        var disX=0;
+        var Dis=0;
+        var rotateDeg=0;
+        var timer=null;
+        var iNow=0;
+        var aBtn=document.querySelector("#index").querySelectorAll("a");
+        document.addEventListener("touchmove",function(e){
+            e.preventDefault();
+        });
+        oBox.addEventListener("touchstart",fnStart,false);
+        function fnStart(e){
+            Dis=0;//如果不清空那么点击也可以转动;
+            var touches= e.changedTouches[0];
+            disX=touches.pageX;
+            oBox.addEventListener("touchmove",fnMove,false);
+            function fnMove(e){
+                var touches= e.changedTouches[0];
+                Dis=touches.pageX-disX;
+                rotateDeg=oNowX+Dis/5;
+                oBox.style.transform="rotateY("+rotateDeg+"deg)";
+            }
+            oBox.addEventListener("touchend",fnEnd,false);
+            function fnEnd(){
+                var one=0;
+
+                if(Math.abs(Dis/5)>30){
+                   one=(Dis/5)/Math.abs(Dis/5);
+                }//判断大于三十就跳转;
+                rotateDeg=oNowX+one*90;
+                oBox.style.transition="0.5s";
+                oBox.style.transform="rotateY("+rotateDeg+"deg)";
+                oBox.addEventListener("transitionend",function(){
+                    oBox.style.transition="none";//动画执行玩就取消过渡;
+                    iNow=Math.abs((rotateDeg/90)%4);
+                    for(var i=0;i<aBtn.length;i++){
+                        aBtn[i].className="";
+                    }
+                    aBtn[iNow].className="active";
+                },false);
+                oNowX=rotateDeg;
+                oBox.removeEventListener("touchend",fnEnd,false);
+                oBox.removeEventListener("touchmove",fnMove,false);
+
+            }
+            return false;
+        }
+    }
+</script>
+<body>
+<div class="wrap">
+    <div id="box">
+        <div><img src="1.jpg" alt=""></div>
+        <div><img src="2.jpg" alt=""></div>
+        <div><img src="3.jpg" alt=""></div>
+        <div></div>
+        <div></div>
+        <div><img src="5.jpg" alt=""></div>
+    </div>
+
+</div>
+<p id="index">
+    <a href="javascript:void(0);" class="active"></a>
+    <a href="javascript:void(0);"></a>
+    <a href="javascript:void(0);"></a>
+    <a href="javascript:void(0);"></a>
+</p>
+</body>
+</html>
