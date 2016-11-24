@@ -12,8 +12,6 @@ $(function(){
             });
             oBgImg.css("height",$(window).outerHeight());
             oBtn.click(function(){
-                /*var oHeight=oBgImg.outerHeight();
-                $(window).scrollTop(oHeight);*/
                 oMain.animate({top:0},500,function(){
                     oInfo.hide();
                     oReturn.css("display","block");
