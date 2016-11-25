@@ -13,16 +13,16 @@ $(function(){
             oBgImg.css("height",$(window).outerHeight());
             oBtn.click(function(){
                 oMain.animate({top:0},500,function(){
-                    oInfo.hide();
                     oReturn.css("display","block");
                 });
+                oInfo.animate({bottom:$(window).outerHeight()},500);
                 oMain.height($(window).outerHeight());
             });
             oReturn.click(function(){
-                oReturn.css("display","none");
+                oReturn.hide(400);
                 oMain.animate({top:$(window).outerHeight()},500,function(){
-                    oInfo.show();
                 });
+                oInfo.animate({bottom:0},500);
             });
         }
     )();
