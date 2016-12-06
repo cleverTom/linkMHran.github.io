@@ -1,0 +1,423 @@
+@charset "UTF-8";
+/*头部区域*/
+a:hover {
+  text-decoration: none;
+}
+header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1.28rem;
+  background: #ff5000;
+}
+header a {
+  display: block;
+  color: #fff;
+  margin-top: 0.2rem;
+  font-size: 0.24rem;
+}
+header a:nth-of-type(1) {
+  float: left;
+  width: 0.86666667rem;
+  height: 0.92rem;
+  margin-left: 0.26666667rem;
+  text-align: center;
+}
+header a:nth-of-type(1)::before {
+  content: "";
+  display: block;
+  width: 0.58666667rem;
+  height: 0.54666667rem;
+  margin: 0 auto 0.09333333rem;
+  background: url("../img/header-icon1.png");
+  background-size: cover;
+}
+header a:nth-of-type(2) {
+  position: absolute;
+  width: 6.48rem;
+  height: 0.85333333rem;
+  left: 1.76rem;
+  background: #d42d00 url(../img/header-icon4.png) 0.18666667rem 0 no-repeat;
+  background-size: 0.53333333rem 0.85333333rem;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  line-height: 0.85333333rem;
+  font-size: 0.4rem;
+  text-indent: 0.69333333rem;
+}
+header a:nth-of-type(2) img {
+  float: right;
+  width: 0.48rem;
+  height: 0.42666667rem;
+  margin: 0.2rem 0.21333333rem 0 0;
+}
+header a:nth-of-type(3) {
+  float: right;
+  width: 0.86666667rem;
+  height: 0.92rem;
+  margin-right: 0.26666667rem;
+  text-align: center;
+}
+header a:nth-of-type(3)::before {
+  content: "";
+  display: block;
+  width: 0.70666667rem;
+  height: 0.57333333rem;
+  margin: 0 auto 0.09333333rem;
+  background: url("../img/header-icon2.png") 0.05333333rem 0 no-repeat;
+  background-size: contain;
+}
+main {
+  position: absolute;
+  top: 1.28rem;
+  left: 0;
+  bottom: 1.30666667rem;
+  width: 100%;
+  overflow: hidden;
+}
+main div.wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+main #nav {
+  position: relative;
+  width: 10rem;
+  height: 3.12rem;
+  margin-bottom: 0.05333333rem;
+}
+main #nav #tab {
+  width: 70rem;
+  overflow: hidden;
+}
+main #nav #tab a {
+  float: left;
+  height: 3.12rem;
+  z-index: 1;
+}
+main #nav #tab a img {
+  width: 10rem;
+  height: 3.12rem;
+}
+main #nav .tabLine {
+  position: absolute;
+  height: 0.26666667rem;
+  left: 6.78666667rem;
+  bottom: 0.30666667rem;
+  text-align: center;
+  line-height: 0.26666667rem;
+  z-index: 2;
+}
+main #nav .tabLine span {
+  float: left;
+  width: 0.2rem;
+  height: 0.2rem;
+  margin-right: 0.10666667rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+main #nav .tabLine span.active {
+  background: #ff5500;
+}
+main #server {
+  padding-bottom: 0.26666667rem;
+}
+main #server .row {
+  display: -webkit-box;
+  display: flex;
+  width: 9.33333333rem;
+  margin: 0 0.33333333rem;
+}
+main #server .row div {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  width: 0%;
+  padding-top: 0.26666667rem;
+}
+main #server .row div a {
+  display: block;
+  text-align: center;
+  line-height: 0.69333333rem;
+  color: #666666;
+  /*针对不同的设备获取不同的值;*/
+}
+[data-dpr="1"] main #server .row div a {
+  font-size: 11px;
+}
+[data-dpr="2"] main #server .row div a {
+  font-size: 22px;
+}
+[data-dpr="3"] main #server .row div a {
+  font-size: 44px;
+}
+main #server .row div a::before {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 1.14666667rem;
+  height: 1.13333333rem;
+  background-image: url(../img/icon1.png);
+  background-size: 6rem 2.4rem;
+}
+main #server .row:nth-of-type(1) div:nth-of-type(1) a::before {
+  background-position: 0 0;
+}
+main #server .row:nth-of-type(1) div:nth-of-type(2) a::before {
+  background-position: 1.2rem 0;
+}
+main #server .row:nth-of-type(1) div:nth-of-type(3) a::before {
+  background-position: 2.4rem 0;
+}
+main #server .row:nth-of-type(1) div:nth-of-type(4) a::before {
+  background-position: 3.6rem 0;
+}
+main #server .row:nth-of-type(1) div:nth-of-type(5) a::before {
+  background-position: 4.8rem 0;
+}
+main #server .row:nth-of-type(2) div:nth-of-type(1) a::before {
+  background-position: 0 1.2rem;
+}
+main #server .row:nth-of-type(2) div:nth-of-type(2) a::before {
+  background-position: 1.2rem 1.2rem;
+}
+main #server .row:nth-of-type(2) div:nth-of-type(3) a::before {
+  background-position: 2.4rem 1.2rem;
+}
+main #server .row:nth-of-type(2) div:nth-of-type(4) a::before {
+  background-position: 3.6rem 1.2rem;
+}
+main #server .row:nth-of-type(2) div:nth-of-type(5) a::before {
+  background-position: 4.8rem 1.2rem;
+}
+main #headline {
+  overflow: hidden;
+}
+main #headline .hr {
+  display: block;
+  width: 9.54666667rem;
+  height: 0.01333333rem;
+  margin: 0 0.24rem;
+  background: #e8e8e8;
+}
+main #headline .head {
+  width: 9.76rem;
+  height: auto;
+  overflow: hidden;
+  padding: 0.13333333rem 0 0.13333333rem 0.24rem;
+}
+main #headline .head h2 {
+  float: left;
+  width: 1.86666667rem;
+  height: 1.30666667rem;
+}
+main #headline .head h2 img {
+  width: 1.86666667rem;
+  height: 1.30666667rem;
+}
+main #headline .head .hr1 {
+  float: left;
+  display: block;
+  width: 0.01333333rem;
+  height: 1.30666667rem;
+  margin-right: 0.16rem;
+  background: #e8e8e8;
+}
+main #headline .head .news {
+  float: left;
+  width: 7.33333333rem;
+  padding-top: 0.10666667rem;
+}
+main #headline .head .news a {
+  display: block;
+  width: 7.33333333rem;
+  padding-left: 0.97333333rem;
+  background: url("../img/hot-talking.png") no-repeat;
+  background-size: 0.97333333rem 0.54666667rem;
+  color: #434343;
+  line-height: 0.54666667rem;
+  font-size: 0.34666667rem;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+main #shopping {
+  width: 10rem;
+  border-top: 0.16rem solid #eeeeee;
+  border-bottom: 0.16rem solid #eeeeee;
+  overflow: hidden;
+}
+main #shopping a {
+  float: left;
+  display: block;
+}
+main #shopping a span {
+  display: inline-block;
+  position: relative;
+  top: 0.06666667rem;
+  width: 0.46666667rem;
+  height: 0.46666667rem;
+  margin-right: 0.12rem;
+  background: url("../img/adTitle.png") no-repeat;
+  -webkit-background-size: 0.53333333rem 2.13333333rem;
+  background-size: 0.53333333rem 2.13333333rem;
+}
+main #shopping .crashshopping {
+  width: 3.61333333rem;
+  height: 4.78666667rem;
+  padding: 0.26666667rem 0 0 0.21333333rem;
+  border-right: 0.01333333rem solid #e8e8e8;
+  border-bottom: 0.01333333rem solid #e8e8e8;
+}
+main #shopping .crashshopping h2 {
+  font-size: 0.48rem;
+  line-height: 0.61333333rem;
+  color: #e52b1a;
+}
+main #shopping .crashshopping h2 span {
+  background-position: 0 0;
+}
+main #shopping .crashshopping p {
+  color: #8e8e8e;
+  line-height: 0.50666667rem;
+  font-size: 0.32rem;
+}
+main #shopping .crashshopping img {
+  width: 3.61333333rem;
+  height: 2.92rem;
+}
+main #shopping .crashshopping #countdown {
+  height: 0.58666667rem;
+  margin: 0.09333333rem 0;
+}
+main #shopping .crashshopping #countdown span {
+  float: left;
+  width: 0.54666667rem;
+  height: 0.58666667rem;
+  background: #333333;
+  border-radius: 0.02666667rem;
+  line-height: 0.58666667rem;
+  text-align: center;
+  color: #fefefe;
+  font-size: 0.29333333rem;
+}
+main #shopping .crashshopping #countdown small {
+  float: left;
+  width: 0.06666667rem;
+  height: 0.58666667rem;
+  margin: 0 0.06666667rem;
+  color: #000000;
+  line-height: 0.58666667rem;
+}
+main #shopping .goods {
+  width: 6.14666667rem;
+  height: 2.32rem;
+  border-bottom: 0.01333333rem solid #e8e8e8;
+}
+main #shopping .goods .description {
+  float: left;
+  width: 3.01333333rem;
+  height: 2.05333333rem;
+  padding: 0.26666667rem 0 0 0.24rem;
+}
+main #shopping .goods .description h2 {
+  font-size: 0.45333333rem;
+  color: #50b8e0;
+  line-height: 0.56rem;
+}
+main #shopping .goods .description h2 span {
+  background-position: 0 -0.53333333rem;
+}
+main #shopping .goods .description p {
+  line-height: 0.50666667rem;
+  font-size: 0.32rem;
+  color: #757575;
+}
+main #shopping .goods .description small {
+  line-height: 0.49333333rem;
+  font-size: 0.32rem;
+  color: #b3dbef;
+}
+main #shopping .goods img {
+  float: left;
+  width: 2.89333333rem;
+  height: 2.32rem;
+}
+main #shopping .buysomething {
+  width: 2.81333333rem;
+  height: 2.61333333rem;
+  border-bottom: 0.01333333rem solid #e8e8e8;
+  border-right: 0.01333333rem solid #e8e8e8;
+  padding: 0.10666667rem 0 0 0.24rem;
+}
+main #shopping .buysomething h2 {
+  line-height: 0.56rem;
+  font-size: 0.37333333rem;
+  color: #e784ab;
+}
+main #shopping .buysomething h2 span {
+  background-position: 0 -1.06666667rem;
+}
+main #shopping .buysomething p {
+  line-height: 0.37333333rem;
+  font-size: 0.32rem;
+  color: #797979;
+}
+main #shopping .buysomething img {
+  width: 2.81333333rem;
+  height: 1.69333333rem;
+}
+main #shopping .shoppingList {
+  width: 2.84rem;
+  height: 2.61333333rem;
+  border-bottom: 0.01333333rem solid #e8e8e8;
+  padding: 0.10666667rem 0 0 0.24rem;
+}
+main #shopping .shoppingList h2 {
+  line-height: 0.56rem;
+  font-size: 0.37333333rem;
+  color: #e8736d;
+}
+main #shopping .shoppingList h2 span {
+  background-position: 0 -1.6rem;
+}
+main #shopping .shoppingList p {
+  line-height: 0.37333333rem;
+  font-size: 0.32rem;
+  color: #797979;
+}
+main #shopping .shoppingList img {
+  width: 2.81333333rem;
+  height: 1.69333333rem;
+}
+footer {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1.29333333rem;
+  background: -webkit-linear-gradient(top, #f8f8f8, #f5f3f2);
+  background: linear-gradient(top, #f8f8f8, #f5f3f2);
+  border-top: 0.01333333rem solid #d9d9d9;
+}
+footer a {
+  display: block;
+  flex-grow: 1;
+  -webkit-box-flex: 1;
+  width: 0%;
+  text-align: center;
+}
+footer a img {
+  height: 0.58666667rem;
+  margin-top: 0.2rem;
+}
+footer a p {
+  color: #5f646e;
+  font-size: 0.26666667rem;
+  font-weight: 500;
+}

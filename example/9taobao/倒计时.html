@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">
+    <span>00</span>:
+    <span>00</span>:
+    <span>00</span>
+</div>
+<script>
+    function countdown(parent,hour,min,sec,fn)
+    {
+        var oParent=document.getElementById(parent);
+        var timer=null;
+        var aSpan=oParent.querySelectorAll("span");
+        var iHour=aSpan[0];
+        var iMin=aSpan[1];
+        var iSec=aSpan[2];
+        time();
+        function count()
+        {
+            sec--;
+            if(sec==-1)
+            {
+                min--;
+                if(min!=-1)
+                {
+                    sec=59;
+                }
+                else if(min==-1)
+                {
+                    if(hour==0)
+                    {
+                        clearInterval(timer);
+                        fn&&fn();
+                        return;
+                    }
+                    else
+                    {
+                        hour--;
+                        min=59;
+                        sec=59;
+                    }
+                }
+
+            }
+            time();
+        }
+        timer=setInterval(count,1000);
+        function toZero(num)
+        {
+            if(num<=9)
+            {
+                return "0"+num;
+            }
+            else
+            {
+                return ""+num;
+            }
+        }
+        function time()
+        {
+            iHour.innerHTML=toZero(hour);
+            iMin.innerHTML=toZero(min);
+            iSec.innerHTML=toZero(sec);
+        }
+    }
+    countdown("div1",1,1,5);
+</script>
+</body>
+</html>
