@@ -115,6 +115,9 @@ window.onload=function()
                 iSec.innerHTML=toZero(sec);
             }
         }
-        countdown("countdown",1,5,33);
+        var hours=Math.floor(Math.random()*24);
+        var mins=Math.floor(Math.random()*60);
+        var secs=Math.floor(Math.random()*60);
+        countdown("countdown",hours,mins,secs);
     })(document);
 };
