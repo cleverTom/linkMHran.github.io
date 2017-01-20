@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>陀螺仪</title>
+    <style>
+        body,
+        html{
+            position: relative;
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #view{
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            -webkit-perspective: 300px;
+            perspective: 300px;
+        }
+        #box{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 1024px;
+            height: 768px;
+            margin: -368px 0 0 -512px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+        }
+        #box div{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: center center no-repeat;
+            background-size: cover;
+        }
+        #box div:nth-of-type(1){
+            background-image: url("./img/img1.jpg");
+        }
+        #box div:nth-of-type(2){
+            background-image: url("./img/img2.jpg");
+        }
+        #box div:nth-of-type(3){
+            background-image: url("./img/img3.jpg");
+        }
+        #box div:nth-of-type(4){
+            background-image: url("./img/img4.jpg");
+        }
+    </style>
+</head>
+
+<body>
+    <div id="view">
+        <div id="box">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <script src="./tweenMove.js"></script>
+    <script>
+        (function () {
+            var box = document.querySelector("#box");
+            var divs = box.querySelectorAll("div");
+            var start;//设置手机第一次打开的初始角度;
+            var lsat;//记录手机的初始位置 大于5再开始移动
+            // css(box, "translateZ", -2000);方便观察
+            css(box, "rotateY", 0);//记录当前位置
+            Array.from(divs).forEach(function (div, index) {
+                css(div, "rotateY", index * 90);
+                css(div, "translateZ", -512);
+            });
+
+            window.addEventListener("deviceorientation", function (ev) {
+                var y = Math.round(ev.gamma);
+                if (typeof start == "undefined") {
+                    start = y;
+                    last = start;
+                    return;
+                }
+                y = y - start;//相当于设置一个初始角度 不管几度都为0;
+                if (Math.abs(y - last) > 5) {//防止抖动
+                    css(box, "rotateY", y);
+                    last = y;//归为记住上一次的位置
+                }
+
+            });
+        })();
+    </script>
+</body>
+
+</html>
